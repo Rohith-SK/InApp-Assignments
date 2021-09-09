@@ -1,11 +1,10 @@
 import random
-n=11
 "winner"
 user_count=0
 computer_count=0
 output_dict={}
 keys=[]
-for i in range(1,n):
+for i in range(1,11):
     user_choice=input("Enter User Choice(rock,paper,scissors):\n")
     available_choices=['rock','paper','scissors']
     print("Computer Choice is:")
@@ -70,12 +69,9 @@ for i in range(1,n):
 print("Points Earned by User:",user_count)
 print("Points Earned by Computer:",computer_count)
 choice = int(input("\nEnter the Round number for details.\n"))
-if output_dict[choice][2] == 'Tie':
-    print("Round {choice} was tied")
-else:
-    print("User Choice:",{output_dict[choice][0]})
-    print("Computer Choice:", {output_dict[choice][1]})
-    print({output_dict[choice][2]},"has won round",choice)
+print("User Choice:",{output_dict[choice][0]})
+print("Computer Choice:", {output_dict[choice][1]})
+print({output_dict[choice][2]},"has won round",choice)
 
 
 
