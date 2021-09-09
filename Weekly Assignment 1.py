@@ -15,7 +15,6 @@ for i in range(1,n):
 
 
     if(user_choice==computer_choice):
-        print("It is a tie ")
         user_count=user_count+0
         computer_count=computer_count+0
         winner='Noone'
