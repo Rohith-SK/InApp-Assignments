@@ -64,7 +64,7 @@ for i in range(1,11):
                 winner = 'Player'
     else:
         print("Invalid Statement")
-    output_dict[0 + i] = [user_choice, computer_choice, winner]
+    output_dict[i] = [user_choice, computer_choice, winner]
 print("Points Earned by Player:",user_count)
 print("Points Earned by Computer:",computer_count)
 choice = int(input("\nEnter the Round number for details.\n"))
