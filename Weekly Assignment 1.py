@@ -68,7 +68,6 @@ for i in range(1,n):
     else:
         print("Invalid Statement")
     output_dict[0 + i] = [user_choice, computer_choice, winner]
-    print(output_dict)
 if(user_count==computer_count):
     print("Points Earned by User:", user_count)
     print("Points Earned by Computer:", computer_count)
