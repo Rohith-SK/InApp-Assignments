@@ -67,15 +67,8 @@ for i in range(1,n):
     else:
         print("Invalid Statement")
     output_dict[0 + i] = [user_choice, computer_choice, winner]
-if(user_count==computer_count):
-    print("Points Earned by User:", user_count)
-    print("Points Earned by Computer:", computer_count)
-elif(user_count>computer_count):
-    print("Points Earned by User:", user_count)
-    print("Points Earned by Computer:", computer_count)
-else:
-    print("Points Earned by User:",user_count)
-    print("Points Earned by Computer:",computer_count)
+print("Points Earned by User:",user_count)
+print("Points Earned by Computer:",computer_count)
 choice = int(input("\nEnter the Round number for details.\n"))
 if output_dict[choice][2] == 'Tie':
     print("Round {choice} was tied")
