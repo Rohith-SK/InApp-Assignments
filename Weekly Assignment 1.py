@@ -3,7 +3,6 @@ import random
 user_count=0
 computer_count=0
 output_dict={}
-keys=[]
 for i in range(1,11):
     user_choice=input("Enter User Choice(rock,paper,scissors):\n")
     available_choices=['rock','paper','scissors']
