@@ -70,16 +70,12 @@ for i in range(1,n):
     output_dict[0 + i] = [user_choice, computer_choice, winner]
     print(output_dict)
 if(user_count==computer_count):
-    print("Winner is Noone")
     print("Points Earned by User:", user_count)
     print("Points Earned by Computer:", computer_count)
 elif(user_count>computer_count):
-    print("Winner is User")
     print("Points Earned by User:", user_count)
     print("Points Earned by Computer:", computer_count)
 else:
-    print("Winner is Computer")
-    print("Winner is Computer")
     print("Points Earned by User:",user_count)
     print("Points Earned by Computer:",computer_count)
 choice = int(input("\nEnter the Round number for details.\n"))
