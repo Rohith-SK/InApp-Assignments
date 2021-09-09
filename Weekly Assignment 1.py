@@ -20,25 +20,24 @@ for i in range(1,11):
     elif(user_choice=='rock'):
             if (computer_choice=='scissors'):
                 user_count = user_count + 1
-                winner='User'
+                winner='Player'
 
 
             else:
                 computer_count=computer_count + 1
     elif(user_choice=='scissors'):
          if(computer_choice=='rock'):
-            print("Computer Wins")
             computer_count=computer_count + 1
             winner = 'Computer'
 
          else:
              user_count = user_count + 1
-             winner = 'User'
+             winner = 'Player'
 
     elif(user_choice=='scissors'):
             if(computer_choice=='paper'):
                 user_count = user_count + 1
-                winner = 'User'
+                winner = 'Player'
 
             else:
                 computer_count=computer_count + 1
@@ -49,27 +48,27 @@ for i in range(1,11):
                 winner = 'Computer'
             else:
                 user_count = user_count + 1
-                winner = 'User'
+                winner = 'Player'
     elif (user_choice=='paper'):
             if(computer_choice=='rock'):
                 user_count = user_count + 1
             else:
                 user_count = user_count + 1
-                winner = 'User'
+                winner = 'Player'
     elif(user_choice=='rock'):
             if(computer_choice=='paper'):
                 computer_count=computer_count + 1
                 winner = 'Computer'
             else:
                 user_count = user_count + 1
-                winner = 'User'
+                winner = 'Player'
     else:
         print("Invalid Statement")
     output_dict[0 + i] = [user_choice, computer_choice, winner]
-print("Points Earned by User:",user_count)
+print("Points Earned by Player:",user_count)
 print("Points Earned by Computer:",computer_count)
 choice = int(input("\nEnter the Round number for details.\n"))
-print("User Choice:",{output_dict[choice][0]})
+print("Player Choice:",{output_dict[choice][0]})
 print("Computer Choice:", {output_dict[choice][1]})
 print({output_dict[choice][2]},"has won round",choice)
 
