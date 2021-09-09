@@ -84,7 +84,7 @@ else:
     print("Points Earned by Computer:",computer_count)
 choice = int(input("\nEnter the Round number for details.\n"))
 if output_dict[choice][2] == 'Tie':
-    print(f"Round {choice} was tied")
+    print("Round {choice} was tied")
 else:
     print("User Choice:",{output_dict[choice][0]})
     print("Computer Choice:", {output_dict[choice][1]})
