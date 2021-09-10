@@ -24,6 +24,7 @@ for i in range(1,11):
 
             else:
                 computer_count=computer_count + 1
+                winner='computer'
     elif(user_choice=='scissors'):
          if(computer_choice=='rock'):
             computer_count=computer_count + 1
@@ -51,9 +52,10 @@ for i in range(1,11):
     elif (user_choice=='paper'):
             if(computer_choice=='rock'):
                 user_count = user_count + 1
+                winner='Player'
             else:
                 user_count = user_count + 1
-                winner = 'Player'
+                winner = 'Computer'
     elif(user_choice=='rock'):
             if(computer_choice=='paper'):
                 computer_count=computer_count + 1
