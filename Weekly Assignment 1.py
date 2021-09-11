@@ -2,83 +2,53 @@ import random
 "winner"
 user_count=0
 computer_count=0
+available_choices = ["rock", "paper", "scissors"]
+winning_options = [("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")]
 output_dict={}
 for i in range(1,11):
-    user_choice=input("Enter User Choice(rock,paper,scissors):\n")
-    available_choices=['rock','paper','scissors']
-    print("Computer Choice is:")
+    user_choice=int(input("\n1.Rock \n2.Paper \n3.Scissors\nEnter your choice"))
+    if(user_choice==1):
+        user_choice="rock"
+        print("User Choice is :",user_choice)
+    elif(user_choice==2):
+        user_choice="paper"
+        print("User Choice is :", user_choice)
+    elif(user_choice==3):
+        user_choice="scissors"
+        print("User Choice is :", user_choice)
+    else:
+        print("Invalid Choice")
     computer_choice=random.choice(available_choices)
-    print(computer_choice)
-
-
-
+    print("Computer Choice is :",computer_choice)
     if(user_choice==computer_choice):
         user_count=user_count+0
         computer_count=computer_count+0
-        winner='Noone'
-    elif(user_choice=='rock'):
-            if (computer_choice=='scissors'):
-                user_count = user_count + 1
-                winner='Player'
-
-
-            else:
-                computer_count=computer_count + 1
-                winner='computer'
-    elif(user_choice=='scissors'):
-         if(computer_choice=='rock'):
-            computer_count=computer_count + 1
-            winner = 'Computer'
-
-         else:
-             user_count = user_count + 1
-             winner = 'Player'
-
-    elif(user_choice=='scissors'):
-            if(computer_choice=='paper'):
-                user_count = user_count + 1
-                winner = 'Player'
-
-            else:
-                computer_count=computer_count + 1
-                winner = 'Computer'
-    elif(user_choice=='paper'):
-            if(computer_choice=='scissors'):
-                computer_count = computer_count + 1
-                winner = 'Computer'
-            else:
-                user_count = user_count + 1
-                winner = 'Player'
-    elif (user_choice=='paper'):
-            if(computer_choice=='rock'):
-                user_count = user_count + 1
-                winner='Player'
-            else:
-                user_count = user_count + 1
-                winner = 'Computer'
-    elif(user_choice=='rock'):
-            if(computer_choice=='paper'):
-                computer_count=computer_count + 1
-                winner = 'Computer'
-            else:
-                user_count = user_count + 1
-                winner = 'Player'
+        winner="Nonone"
+    elif((user_choice,computer_choice) in winning_options):
+        user_count=user_count+1
+        winner="Player"
     else:
-        print("Invalid Statement")
+        computer_count=computer_count+1
+        winner="Computer"
     output_dict[i] = [user_choice, computer_choice, winner]
 print("Points Earned by Player:",user_count)
 print("Points Earned by Computer:",computer_count)
 if(user_count==computer_count):
     print("Noone is Winner")
 elif(user_count>computer_count):
-    print("Winner is Player")
+    print("Overall Winner is Player")
 else:
-    print("winner is Computer")
-choice = int(input("\nEnter the Round number for details.\n"))
-print("Player Choice:",{output_dict[choice][0]})
-print("Computer Choice:", {output_dict[choice][1]})
-print({output_dict[choice][2]},"has won round",choice)
-
+    print("Winner is Computer")
+choice='y'
+while(choice=='y'):
+    try:
+        round_number = int(input("\nEnter the round for which you need information\n"))
+        print("Player Choice is {}".format(output_dict[round_number][0]))
+        print("Computer Choice is {}".format(output_dict[round_number][1]))
+        print("{} has won round {}".format(output_dict[round_number][2],round_number))
+    except:
+        print("The round number doesn't exist")
+    choice=input("Do you want to continue (y/n)")
 
 
 
