@@ -6,7 +6,7 @@ def tic_tac_toe():
              '4', '5', '6',
              '7', '8', '9']
     end = False
-    win_commbinations = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+    win_options = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
     positions=[1,2,3,4,5,6,7,8,9]
     def draw_board():
         print(board[0] + '|' + board[1] + '|' + board[2])
@@ -48,7 +48,7 @@ def tic_tac_toe():
 
     def check_board():
         count = 0
-        for a in win_commbinations:
+        for a in win_options:
             if board[a[0]] == board[a[1]] == board[a[2]] == "X":
                 print("Player Wins!\n")
                 print("Congratulations!\n")
