@@ -29,7 +29,7 @@ class Pet():
 
 
     def hi(self):
-        if (self.sounds[pet_number]) == '':
+        if (self.sounds[pet_number]) == []:
             print("\nHello! Teach me a word!")
         else:
             print(f"\nHi! My favorite word is {random.choice(self.sounds[pet_number])}")
@@ -52,11 +52,11 @@ class Pet():
 
     def state(self):
         if self.hunger <= self.threshold_hungry and self.boredom <= self.threshold_boredom:
-            return "happy"
+            return "Happy"
         elif self.hunger > self.threshold_hungry:
-            return "hungry"
+            return "Hungry"
         else:
-            return "bored"
+            return "Bored"
     def __str__(self):
         state = "     I'm " + self.name + ". "
         state += " I feel " + self.state() + ". "
@@ -78,7 +78,6 @@ while game:
         user_pets.append(pet_name)
         print(f"Pets list after adopting:{user_pets}")
         pet_name = Pet(name=pet_name)
-        print(pet_name)
     elif(choice==2):
         user_choice=int(input("Enter your Command 1. Teach 2. Greet 3. Feed"))
         pet_number = int(input(f"Enter the pet number to interact with the pet {user_pets}"))
@@ -89,10 +88,12 @@ while game:
             pet_name = Pet(name=pet_name)
             pet_name.teach(word)
         elif(user_choice==2):
-            pet_name =user_pets[pet_number-1]
+            pet_name = user_pets[pet_number - 1]
+            pet_name = Pet(name=pet_name)
             pet_name.hi()
         elif(user_choice==3):
             pet_name = user_pets[pet_number-1]
+            pet_name = Pet(name=pet_name)
             pet_name.feed()
         else:
             print("Invalid Choice!")
@@ -102,7 +103,6 @@ while game:
     for i in user_pets:
         name=Pet(i)
         name.clock_tick()
-
 
     con=input("Do you want to continue(Y/N)")
     if(con=='Y'):
