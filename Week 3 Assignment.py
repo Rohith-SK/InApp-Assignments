@@ -90,7 +90,6 @@ while game:
             pet_name = user_pets[pet_number - 1]
             pet_name = Pet(name=pet_name)
             pet_name.hi()
-            print(pet_name)
         elif(user_choice==3):
             pet_name = user_pets[pet_number-1]
             pet_name = Pet(name=pet_name)
