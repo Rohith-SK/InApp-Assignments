@@ -111,10 +111,7 @@ while game:
         game=True
     else:
         game=False
-
-name=user_pets[1]
-name=Pet(name)
-print(name)
+        
 print("Thank You!")
 
 
