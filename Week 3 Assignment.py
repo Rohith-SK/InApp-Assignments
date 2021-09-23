@@ -19,8 +19,8 @@ class Pet():
 
 
     def clock_tick(self):
-        self.boredom += 1
-        self.hunger += 1
+        self.boredom += 2
+        self.hunger += 3
 
     def teach(self,word):
         self.sounds[pet_number].append(word)
@@ -43,11 +43,11 @@ class Pet():
 
 
     def reduce_hunger(self):
-        print("Thank You for thr food")
-        self.hunger = randrange(1,hungry_reduce)
+        print("Thank You for the food")
+        self.hunger-= hungry_reduce
 
     def reduce_boredom(self):
-        self.boredom=randrange(1,boredom_reduce)
+        self.boredom-=boredom_reduce
 
 
     def state(self):
@@ -58,8 +58,7 @@ class Pet():
         else:
             return "Bored"
     def __str__(self):
-        state = "     I'm " + self.name + ". "
-        state += " I feel " + self.state() + ". "
+        return f'I am {self.name}. I feel {self.state()}'
 
 
 print("\nWelcome!\n")
@@ -91,6 +90,7 @@ while game:
             pet_name = user_pets[pet_number - 1]
             pet_name = Pet(name=pet_name)
             pet_name.hi()
+            print(pet_name)
         elif(user_choice==3):
             pet_name = user_pets[pet_number-1]
             pet_name = Pet(name=pet_name)
@@ -103,6 +103,8 @@ while game:
     for i in user_pets:
         name=Pet(i)
         name.clock_tick()
+        print(name)
+
 
     con=input("Do you want to continue(Y/N)")
     if(con=='Y'):
@@ -110,6 +112,9 @@ while game:
     else:
         game=False
 
+name=user_pets[1]
+name=Pet(name)
+print(name)
 print("Thank You!")
 
 
