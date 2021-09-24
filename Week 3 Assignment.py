@@ -31,9 +31,6 @@ class Pet():
             print(f"\nHi! My favorite word is {random.choice(self.sounds[pet_number])}")
         self.reduce_boredom()
 
-        return random.choice(self.sounds)
-        self.reduce_boredom()
-
     def feed(self):
         self.reduce_hunger()
 
