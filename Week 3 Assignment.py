@@ -8,7 +8,7 @@ class Pet():
 
     threshold_boredom = 5
     threshold_hungry = 8
-    sounds = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: []}
+    sounds = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8:[]}
 
     def __init__(self, name):
         self.name = name
