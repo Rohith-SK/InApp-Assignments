@@ -49,7 +49,7 @@ conn.executemany("INSERT INTO DOCTORS VALUES(?,?,?,?,?,?,?)",doctor_details)
 
 speciality=input("Enter the Speciality of the Doctor")
 salary=int(input("Enter the Salary of the Doctor"))
-print("Doctors Details as per the User Input")
+print("Displaying Doctors Details as per the User Input")
 cursor.execute("SELECT * FROM DOCTORS WHERE Speciality =:sp and Salary >= :sal",{"sp":speciality, "sal":salary })
 result=cursor.fetchall()
 for row in result:
