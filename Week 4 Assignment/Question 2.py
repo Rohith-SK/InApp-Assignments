@@ -18,12 +18,12 @@ cursor.execute("DROP TABLE IF EXISTS DOCTORS")
 doctors="""CREATE TABLE DOCTORS(
             Doctor_Id INT PRIMARY KEY NOT NULL,
             Doctor_Name TEXT NOT NULL,
-            Hospital_ID TEXt NOT NULL,
+            Hospital_ID TEXT NOT NULL,
             Joining_Date DATE NOT NULL,
             Speciality TEXT  NOT NULL,
             Salary INT NOT NULL,
             Experience TEXT DEFAULT NULL,
-            FOREIGN KEY(Hospital_ID) REFERENCES HOSPITAL(Hospital_ID))"""
+            FOREIGN KEY(Hospital_ID) REFERENCES HOSPITALS(Hospital_ID))"""
 
 cursor.execute(doctors)
 
