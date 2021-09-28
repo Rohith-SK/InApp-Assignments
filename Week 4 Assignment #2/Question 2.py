@@ -66,17 +66,16 @@ def add_department_details():
 def display():
     con=connection()
     cursor=con.cursor()
-    id=int(input("Enter Department ID"))
-    cursor.execute("SELECT * FROM Departments WHERE Department_ID=:id",{'id':id})
-    results=cursor.fetchone()
-    if results is not None:
-        print(f'Employee Details of the Department {results[1]} are')
-        cursor.execute("SELECT * FROM Employee WHERE Department_ID=:id", {'id': id})
-        results=cursor.fetchall()
-        for row in results:
-            print(row)
+    id=int(input("Enter Department ID(1-5)"))
+    cursor.execute("SELECT DISTINCT * FROM Employee INNER JOIN Departments WHERE Departments.Department_ID == {} and Departments.Department_ID==Employee.Department_ID".format(id))
+    result=cursor.fetchall()
+    if(len(result)==0):
+        print(f"Error Occured. No Department with Department ID {id}")
     else:
-        print("An Error Occured. No Department with th Inputted ID")
+        for row in result:
+            print(row)
+    con.commit()
+    con.close()
 
 choice='Y'
 while choice=='Y':
