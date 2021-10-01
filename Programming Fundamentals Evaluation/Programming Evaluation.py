@@ -41,6 +41,14 @@ class Cat(Pet):
 
 #main()
 c='Y'
+d1=Dog()
+d2=Dog()
+d3=Dog()
+d4=Dog()
+d5=Dog()
+c1=Cat()
+c2=Cat()
+c3=Cat()
 while c=='Y':
     list_name={Dog:['Vicky','Blacky','Don','Puppy','Chiller'],Cat:['Rui','Leo','Milo']}
     print(list_name)
@@ -53,7 +61,7 @@ while c=='Y':
         else:
             list_name[Dog].append(dog_name)
         pet=Pet(species=species_name,name=dog_name)
-        Dog(Pet)
+        Dog()
     elif(choice==2):
         cat_name=input("Enter any one of the Cat name")
         if(len(cat_name)==0):
@@ -62,7 +70,7 @@ while c=='Y':
         else:
             list_name[Cat].append(cat_name)
         pet=Pet(species=species_name,name=cat_name)
-        Cat(Pet)
+        Cat()
     else:
         print("Invalid Choice")
     
