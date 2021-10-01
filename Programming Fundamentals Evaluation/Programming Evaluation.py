@@ -5,11 +5,10 @@ class Pet():
     def __init__(self,species,name=''):
         self.species=species
         self.name=name
-    try:
         if(self.species in Pet.species_list):
             pass
-    except:
-        print("Error Occured!No such species")
+        else:
+            print("Error Occured!No such species")
 
 
 
