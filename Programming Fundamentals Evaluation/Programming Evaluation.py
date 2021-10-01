@@ -42,26 +42,26 @@ class Cat(Pet):
 #main()
 c='Y'
 while c=='Y':
-    list_name={Dog:['Vicky','Blacky','Don','Puppy','Chiller'],Cat:['Rui','Leo','Milo']
+    list_name={Dog:['Vicky','Blacky','Don','Puppy','Chiller'],Cat:['Rui','Leo','Milo']}
     print(list_name)
     choice=int(input("Do you want to enter for Dog or Cat\n 1 for Dog and 2 for Cat"))
-    if (choice==1)
+    if (choice==1):
         species_name=input("Enter Species Name")
         dog_name=input("Enter any one of the Dog name")
         if(len(dog_name==0)):
             dog_name=''
         else:
             list_name[Dog].append(dog_name)
-        pet=Pet(species=species_name=dog_name)
+        pet=Pet(species=species_name,name=dog_name)
         Dog(Pet)
-    elif(choice==2)
+    elif(choice==2):
         cat_name=input("Enter any one of the Cat name")
         if(len(cat_name)==0):
             cat_name=''
-        species_name=input("Enter Species Name")
+            species_name=input("Enter Species Name")
         else:
             list_name[Cat].append(cat_name)
-        pet=Pet(species=species_name=cat_name)
+        pet=Pet(species=species_name,name=cat_name)
         Cat(Pet)
     else:
         print("Invalid Choice")
