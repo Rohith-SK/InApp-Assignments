@@ -25,7 +25,7 @@ class Dog(Pet):
 
     def __str__(self):
         if (self.name==''):
-            return f'Species of Dog name {self.species} chases {self.chases}'
+            return f'Species of Dog name {Pet.species} chases {self.chases}'
         else:
             return f'Species of Dog unnamed chases {self.chases})'
 
@@ -35,7 +35,7 @@ class Cat(Pet):
 
     def __str__(self):
         if (self.name==''):
-            return f'Species of Cat name {self.species} hates {self.hates}'
+            return f'Species of Cat name {Pet.species} hates {self.hates}'
         else:
             return f'Species of Dog unnamed hates {self.hates})'
 
