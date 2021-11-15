@@ -24,20 +24,20 @@ var i=0;
 function register(){
     var inputName=document.getElementById("register-username").value;
     var inputPassword=document.getElementById("register-password").value;
-    if(inputName==='' && inputPassword===''){
+    var inputEmail=document.getElementById("register-email").value;
+    var inputPhoneNumber=document.getElementById("register-phone-number").value;
+    var inputAddress=document.getElementById("register-address").value;
+    var inputPincode=document.getElementById("register-pincode").value;
+    if(inputName==='' && inputPassword==='' && inputEmail==='' && inputPhoneNumber==='' && inputAddress==='' && inputPincode===''){
         alert("Please enter the details");
     }
-    else if(inputName==='' || inputPassword===''){
+    else if(inputName==='' || inputPassword==='' || inputEmail==='' || inputPhoneNumber==='' || inputAddress==='' || inputPincode===''){
         alert("Please enter the details");
     }
     else{
-        console.log(`Usernmae is ${inputName}`);
-        console.log(`Password is ${inputPassword}`);
         alert("Registration is Successful");
-        registerUser[i]=[inputName,inputPassword];
+        registerUser[i]=[inputName,inputEmail,inputPassword,inputPhoneNumber,inputAddress,inputPincode];
         i++;
-        console.log(registerUser);
-
     } 
 }
 
@@ -49,8 +49,7 @@ function add(){
     var newLI=document.createElement("LI");
     newLI.innerText=value;
     list.append(newLI);
-    listArray.push(value)
-    console.log(`List of Users Added: ${listArray}`);
+    listArray.push(value);
 }
 
 
@@ -60,8 +59,6 @@ function removes(){
     var index=listArray.indexOf(value);
     list.removeChild(list.childNodes[index+1]);
     var finalListArray=listArray.splice(index,1);
-    console.log(`User Removed: ${finalListArray}`);
-    console.log(`List of Users after removing: ${listArray}`);
 }
     
 
