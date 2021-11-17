@@ -56,18 +56,23 @@ function add(){
     var value3=document.getElementById("add-phone-number").value;
     var value4=document.getElementById("add-address").value;
     var value5=document.getElementById("add-pincode").value;
-    listArray.push(value,value1,value2,value3,value4,value5);
-    document.getElementById("new-user").append("Details of User"+" "+k);
-    k++;
-    finalList[j]=JSON.stringify(listArray);
-    j++;
-    for(var i=0;i<listArray.length;i++){
-        var li=document.createElement("li");
-        li.innerHTML=listArray[i]+ "<hr />";
-        document.getElementById("new-user").appendChild(li)
+    if(value==='' || value1==='' || value2==='' || value3==='' || value4==='' || value5===''){
+        alert("Please enter the details");
     }
-    
-    listArray.length=0;
+    else{
+        listArray.push(value,value1,value2,value3,value4,value5);
+        document.getElementById("new-user").append("Details of User"+" "+k);
+        k++;
+        finalList[j]=JSON.stringify(listArray);
+        j++;
+        for(var i=0;i<listArray.length;i++){
+            var li=document.createElement("li");
+            li.innerHTML=listArray[i]+ "<hr />";
+            document.getElementById("new-user").appendChild(li)
+        }
+        
+        listArray.length=0;
+    }
 }
 
 function removes(){
