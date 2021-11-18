@@ -41,7 +41,7 @@ function register(){
         localStorage.setItem("username", inputName);
         var username=localStorage.getItem("username");
         localStorage.setItem("password", inputPassword);
-        var username=localStorage.getItem("password");
+        var password=localStorage.getItem("password");
     } 
 }
 
