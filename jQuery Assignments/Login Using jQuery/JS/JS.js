@@ -1,4 +1,12 @@
 $(document).ready(function (){
+    $('#main-navigation-menu').hide();
+    $('.adding-details').hide();
+    $('.main-adding').hide();
+});
+
+
+
+$(document).ready(function (){
     $('#sign-in').click(function (){
         var username="Rohith";
         var userpassword="admin";
@@ -11,10 +19,21 @@ $(document).ready(function (){
             alert("Please enter the details");
         }
         else if(newUsername===username && newUserpassword===userpassword){
-            window.open("userAdd.html");
+            $('#main-navigation-menu').show();
+            $('.adding-details').show();
+            $('.main-adding').show();
+            $('#main-sign-in').hide();
+            $('body').css('background-color','#04703a');
+            $('#main-navigation-menu').css('background-color','white');
+
         }
         else if(newUsername===localStorage.username && newUserpassword===localStorage.password){
-            window.open("userAdd.html");
+            $('#main-navigation-menu').show();
+            $('.adding-details').show();
+            $('.main-adding').show();
+            $('#main-sign-in').hide();
+            $('body').css('background-color','#04703a');
+            $('#main-navigation-menu').css('background-color','white');
         }
         else{
             alert("Wrong Username or Password");
