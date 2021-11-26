@@ -1,425 +1,527 @@
-$('#main-navigation-menu').hide();
-$('#main-add-button').hide();
-$('.error-messages').hide();
-$('.add-error-messages').hide();
-$('#user-details-table').hide();
-$('.added-usernames').hide();
-
-var firstNameError=false;
-var lastNameError=false;
-var usernameError=false;
-var emailError=false;
-var phoneNumberError=false;
-var passwordError=false;
-var confirmPasswordError=false;
-
-$('#register-first-name').focusout(function (){
-    CheckFirstName();
-})
-$('#register-last-name').focusout(function (){
-    CheckLastName();
-})
-$('#register-username').focusout(function (){
-    CheckUsername();
-})
-$('#register-email').focusout(function (){
-    CheckEmail();
-})
-$('#register-phone-number').focusout(function (){
-    CheckPhoneNumber();
-})
-$('#register-password').focusout(function (){
-    CheckPassword();
-})
-$('#register-confirm-password').focusout(function (){
-    CheckConfirmPassword();
-})
-
-
-
-
-
-function CheckFirstName() {
-    var pattern = /^[a-zA-Z]*$/;
-    var firstName = $("#register-first-name").val();
-    if (pattern.test(firstName) && firstName !== '') {
-        $('#first-name-error').hide();
-    } else {
-        $('#first-name-error').show();
-        firstNameError = true;
-    }
+#first-col{
+    background-color: #04703a;
+    height: 768px;
 }
 
-function CheckLastName() {
-    var pattern = /^[a-zA-Z]*$/;
-    var lastName = $("#register-last-name").val();
-    if (pattern.test(lastName) && lastName !== '') {
-        $('#last-name-error').hide();
-    } else {
-        $('#last-name-error').show();
-        lastNameError = true;
-    }
+.heading{
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 45px;;
+    font-weight: 400;
+    padding-top: 250px;
+
 }
 
-function CheckUsername(){
-     var username=$('#register-username').val();
-     if(username.length>3 && username.length<10 &&username!==''){
-         $('#username-error').hide();
-     }
-     else{
-         $('#username-error').show();
-         usernameError=true;
-     }
+.heading-below{
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size:35 ;
+    font-weight: 100;
 }
 
-function CheckEmail() {
-    var pattern = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    var email = $('#register-email').val();
-    if (pattern.test(email) && email !== '') {
-       $('#email-error').hide();
-    } else {
-       $('#email-error').show();
-       emailError = true;
-    }
+#register-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
 }
 
-function CheckPhoneNumber(){
-     var phoneNumber=$('#register-phone-number').val();
-     if(phoneNumber.length==10 && phoneNumber!==''){
-         $('#phone-number-error').hide();
-     }
-     else{
-         $('#phone-number-error').show();
-         phoneNumberError=true;
-     }
-}
-
-function CheckPassword() {
-    var password = $("#register-password").val();
-    if (password.length < 8) {
-       $("#password-error").show();
-       passwordError = true;
-    } else {
-       $("#password-error").hide();
-    }
-}
-
-function CheckConfirmPassword() {
-    var password = $("#register-password").val();
-    var confirmPassword = $("#register-confirm-password").val();
-    if (password !== confirmPassword) {
-       $("#confirm-password-error").show();
-       confirmPasswordError = true;
-    } else {
-       $("#confirm-password-error").hide();
-    }
-}
-
-var registerUser={};
-var i=0;
-$(document).ready(function (){
-     $('#register-page-button').click(function (){
-        firstNameError=false;
-        lastNameError=false;
-        usernameError=false;
-        emailError=false;
-        phoneNumberError=false;
-        passwordError=false;
-        confirmPasswordError=false;
-        CheckFirstName();
-        CheckLastName();
-        CheckUsername();
-        CheckEmail();
-        CheckPhoneNumber();
-        CheckPassword();
-        CheckConfirmPassword();
-        if (firstNameError === false && lastNameError === false && usernameError === false && emailError === false && phoneNumberError === false && passwordError === false && confirmPasswordError === false) {
-            alert("Registration Successfull");
-            var firstName = $("#register-first-name").val();
-            var lastName = $("#register-last-name").val();
-            var username=$('#register-username').val();
-            var email = $('#register-email').val();
-            var phoneNumber=$('#register-phone-number').val();
-            var password = $("#register-password").val();
-            var confirmPassword = $("#register-confirm-password").val();
-            registerUser[i]=[firstName,lastName,username,email,phoneNumber,password,confirmPassword]
-            i++
-            localStorage.setItem("details",JSON.stringify(registerUser));
-            var details=JSON.parse(localStorage.getItem("details"));
-            $(':input').val('');
-            return true;
-            
-
-         } 
-         else {
-            alert("Please fill the form correctly");
-            return false;
-         }
-     })
-     
- })
-
-
-var clickHome;
-$(document).ready(function (){
-    $('#sign-in').click(function (){
-        var username="Rohith";
-        var password="admin";
-        var newUsername=$('#login-username').val();
-        var newPassword=$('#login-password').val();
-        localStorage.setItem('name',username);
-        var details=JSON.parse(localStorage.getItem("details"));
-        if(details!==null){
-            var len=Object.keys(details).length;
-        }
-        
-        if(newUsername==='' && newPassword===''){
-            alert("Please enter the details");
-        }
-        else if(newUsername==='' || newPassword===''){
-            alert("Please enter the details");
-        }
-        else if(newUsername===username && newPassword===password){
-            clickHome=1;
-            localStorage.setItem('clickHome',clickHome)
-            $('#main-navigation-menu').show();
-            $('.adding-details').show();
-            $('#main-add-button').show();
-            $('#main-sign-in').hide();
-            $('#sign-in').hide()
-            $('#name').text(' ' + newUsername);
-            $('#profile-name').text(newUsername);
-            $('body').css('background-color','#04703a');
-            $('#main-navigation-menu').css('background-color','white');
-        }
-        else{
-            for(var i=0;i<len;i++){
-                if(newUsername===details[i][2] && newPassword===details[i][5]){
-                    localStorage.setItem('clickHome',clickHome)
-                    clickHome=2;
-                    $('#main-navigation-menu').show();
-                    $('.adding-details').show();
-                    $('#main-add-button').show();
-                    $('#main-sign-in').hide();
-                    $('#sign-in').hide()
-                    $('#name').text(' ' + details[i][0]);
-                    $('#profile-name').text(details[i][0]);
-                    localStorage.setItem('name1',details[i][0])
-                    $('body').css('background-color','#04703a');
-                    $('#main-navigation-menu').css('background-color','white');
-                }
-                if(i==len-1 && newUsername!==details[i][2] && newPassword!==details[i][5]){
-                    alert('Wrong Username or Password')
-                }
-            }
-        }
+.sign-up{
+    padding: 10px;
     
-    })
-})
+}
 
-$(document).ready(function (){
-    var clickHome=localStorage.getItem('clickHome')
-    if(clickHome==1){
-        var name=localStorage.getItem('name');
-        $('#name1').text(' ' + name);
-        $('#profile-name1').text(name);
-    }
-    else{
-        var name1=localStorage.getItem('name1');
-        $('#name1').text(' ' + name1);
-        $('#profile-name1').text(name1);
-    }
-})
+#register-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
+}
+
+.login{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    color: #04703a;
+    padding-top: 200px;
+}
+
+.right-details{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;  
+}
+
+.login-head{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
+    padding-top: 20px;;
+}
+
+#login-col{
+    margin-left: 160px;;
+}
+
+#sign-in{
+    padding: 10px;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#sign-in:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
+}
+
+.register-head{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
+    padding-top: 20px;;
+}
+
+#register-details{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
+    padding-top: 20px;;
+}
+
+#register-page-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.go-back-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: -50px;
     
-$(document).ready(function (){
-    $('#navigation-menu-item-home').click(function(){
-        window.open("index1.html");
-    }); 
-})
-
-var addUsernameError=false;
-var addEmailError=false;
-var addPasswordError=false;
-var addPhoneNumberError=false;
-var addAddressError=false;
-var addPincodeError=false;
-
-$('#add-username').focusout(function (){
-    CheckAddUsername();
-})
-$('#add-email').focusout(function (){
-    CheckAddEmail();
-})
-$('#add-password').focusout(function (){
-    CheckAddPassword();
-})
-$('#add-phone-number').focusout(function (){
-    CheckAddPhoneNumber();
-})
-$('#add-address').focusout(function (){
-    CheckAddAddress();
-})
-$('#add-pincode').focusout(function (){
-    CheckAddPincode();
-})
-
-function CheckAddUsername(){
-    var addUsername=$('#add-username').val();
-    if(addUsername.length>3 && addUsername.length<10 &&addUsername!==''){
-        $('#add-username-error').hide();
-    }
-    else{
-        $('#add-username-error').show();
-        addUsernameError=true;
-    }
 }
 
-function CheckAddEmail() {
-    var pattern = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    var addEmail = $('#add-email').val();
-    if (pattern.test(addEmail) && addEmail !== '') {
-       $('#add-email-error').hide();
-    } else {
-       $('#add-email-error').show();
-       addEmailError = true;
-    }
+#registration-details{
+    margin-left: 200px;
 }
 
- 
- function CheckAddPassword() {
-    var addPassword = $("#add-password").val();
-    if (addPassword.length < 8) {
-       $("#add-password-error").show();
-       addPasswordError = true;
-    } else {
-       $("#add-password-error").hide();
-    }
+#register-page-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
 }
 
-function CheckAddPhoneNumber(){
-    var addPhoneNumber=$('#add-phone-number').val();
-    if(addPhoneNumber.length==10 && addPhoneNumber!==''){
-        $('#add-phone-number-error').hide();
-    }
-    else{
-        $('#add-phone-number-error').show();
-        addPhoneNumberError=true;
-    }
+.go-back-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
 }
 
-function CheckAddAddress(){
-    var addAddress=$('#add-address').val();
-    if(addAddress.length<10){
-        $('#add-address-error').show();
-        addAddress=true;
-    }
-    else{
-        $('#add-address-error').hide();
-    }
+#add-details{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
 }
 
-function CheckAddPincode(){
-    var addPincode=$('#add-pincode').val();
-    if(addPincode.length!==6){
-        $('#add-pincode-error').show();
-        addPincode=true;
-    }
-    else{
-        $('#add-pincode-error').hide();
-    }
+#add-page{
+    margin-left: 50px;
+}
+
+#add-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 150px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#remove-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 150px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+#add-page-go-back-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-left: 40px;
+}
+
+#add-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
+}
+
+#remove-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
 }
 
 
-$(document).ready(function (){
-    $('#add-button').click(function (){
-        addUsernameError=false;
-        addEmailError=false;
-        addPasswordError=false;
-        addPhoneNumberError=false;
-        addAddressError=false;
-        addPincodeError=false;
+#add-page-go-back-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
+}
 
-        CheckAddUsername();
-        CheckAddEmail();
-        CheckAddPassword();
-        CheckAddPhoneNumber();
-        CheckAddAddress();
-        CheckAddPincode();
+.added-usernames{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
 
-        if(addUsernameError===false && addEmailError===false && addPasswordError===false && addPhoneNumberError===false && addAddressError===false && addPincodeError===false){
-            alert('User details added successfully');
-            $('#user-details-table').show();
-            $('.added-usernames').show();
-            var addInputUsername=$('input[name="add-input-username"]').val();
-            var addInputEmail=$('input[name="add-input-email"]').val();
-            var addInputPassword=$('input[name="add-input-password"]').val();
-            var addInputPhoneNumber=$('input[name="add-input-phone-number"]').val();
-            var addInputAddress=$('#add-address').val();
-            var addInputPincode=$('input[name="add-input-pincode"]').val();
-            console.log(addedUsersDetails);
-            $('.data-table tbody').append('<tr input-username="'+addInputUsername+'" input-email="'+addInputEmail+'" input-password="'+addInputPassword+'" input-phone-number="'+addInputPhoneNumber+'" input-address="'+addInputAddress+'" input-pincode="'+addInputPincode+'"><td>'+addInputUsername+'</td><td>'+addInputEmail+'</td><td>'+addInputPassword+'</td><td>'+addInputPhoneNumber+'</td><td>'+addInputAddress+'</td><td>'+addInputPincode+'</td><td><button class="btn btn-danger btn-lg btn-delete" type="button">Delete</button><button class="btn btn-primary btn-lg btn-edit" type="button">Edit</button></td></tr>')
-            $(':input').val('');
-            $('#add-address').val('');
-        }
-        else{           
-            alert('Please fill the form carefully')
-        }       
-        
-    })
-})
+ul{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color:#04703a
 
-$(document).ready(function (){
-    $('body').on('click','.btn-delete',function(){
-        $(this).parents('tr').remove();
-    })
-})
+}
 
-$(document).ready(function(){
-    $('body').on('click','.btn-edit',function(){
-        var newUsername=$(this).parents('tr').attr('input-username')
-        var newEmail=$(this).parents('tr').attr('input-email')
-        var newPassword=$(this).parents('tr').attr('input-password')
-        var newPhoneNumber=$(this).parents('tr').attr('input-phone-number')
-        var newAddress=$(this).parents('tr').attr('input-address')
-        var newPincode=$(this).parents('tr').attr('input-pincode')
+li{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
+    margin-top: 10px;
+    margin-left: 50px;
+    list-style-type: none;
+}
 
-        $(this).parents('tr').find('td:eq(0)').html("<input name='edit-username' value='"+newUsername+"'>");
-        $(this).parents('tr').find('td:eq(1)').html("<input name='edit-email' value='"+newEmail+"'>");
-        $(this).parents('tr').find('td:eq(2)').html("<input name='edit-password' value='"+newPassword+"'>");
-        $(this).parents('tr').find('td:eq(3)').html("<input name='edit-phone-number' value='"+newPhoneNumber+"'>");
-        $(this).parents('tr').find('td:eq(4)').html("<input name='edit-address' value='"+newAddress+"'>");
-        $(this).parents('tr').find('td:eq(5)').html("<input name='edit-pincode' value='"+newPincode+"'>");
-        $(this).parents('tr').find('td:eq(6)').prepend("<button class='btn btn-primary btn-update' type='button'>Update</button>");
-        $(this).hide();
+#added-details{
+    margin-left: 80px;
+}
 
-    })
-})
+hr{
+    border: 2px solid white;
+}
 
-$(document).ready(function (){
-    $('body').on('click','.btn-update',function (){
-        var addUpdatedUsername=$('input[name="edit-username"]').val();
-        var addUpdatedEmail=$('input[name="edit-email"]').val();
-        var addUpdatedPassword=$('input[name="edit-password"]').val();
-        var addUpdatedPhoneNumber=$('input[name="edit-phone-number"]').val();
-        var addUpdatedAddress=$('input[name="edit-address"]').val();
-        var addUpdatedPincode=$('input[name="edit-pincode"]').val();
+#main-user{
+    margin-left: 50px;;
+}
 
-        $(this).parents('tr').find('td:eq(0)').text(addUpdatedUsername);
-        $(this).parents('tr').find('td:eq(1)').text(addUpdatedEmail);
-        $(this).parents('tr').find('td:eq(2)').text(addUpdatedPassword);
-        $(this).parents('tr').find('td:eq(3)').text(addUpdatedPhoneNumber);
-        $(this).parents('tr').find('td:eq(4)').text(addUpdatedAddress);
-        $(this).parents('tr').find('td:eq(5)').text(addUpdatedPincode);
+.main-user-number{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;    
+}
 
-        $(this).parents('tr').attr('add-input-username',addUpdatedUsername);
-        $(this).parents('tr').attr('add-input-email',addUpdatedEmail);
-        $(this).parents('tr').attr('add-input-password',addUpdatedPassword);
-        $(this).parents('tr').attr('add-input-phone-number',addUpdatedPhoneNumber);
-        $(this).parents('tr').attr('add-input-address',addUpdatedAddress);
-        $(this).parents('tr').attr('add-input-pincode',addUpdatedPincode);
+#main-navigation-head{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #04703a;
+}
 
-        $(this).parents('tr').find('.btn-edit').show();
-        $(this).parents('tr').find('.btn-update').remove();
+#navigation-menu{
+    display: flex;
+    flex-direction: row;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #04703a;
+}
 
-    })
-})
+#navigation-menu-items{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #04703a;
+  
+}
+
+#main-navigation-item-home{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    color: #04703a;
+    border: none;
+    background-color: white;
+    position: relative;
+    top: 5px;
+    left: 10px;
+}
+
+#navigation-menu-items:hover, :focus{
+    background-color: white;
+    color: #04703a;
+    border-color: #04703a ;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#navigation-menu-item-home:hover, :focus{
+    background-color: white;
+    color: #04703a;
+    border-color: #04703a ;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#main-navigation-head:hover, :focus{
+    border-color: white;
+}
+
+.adding-details{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    position: relative;
+    top: -150px;
+    left: 650px;
+}
+
+.adding-details1{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    position: relative;
+    top: -150px;
+    left: 650px;
+}
+
+#main-add-button{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    height: 80px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    position: relative;
+    top: -150px;
+    left: 650px;
+}
+
+#main-add-button:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
+}
+
+#main-add-button1{
+    border-style: solid;
+    border-radius: 20px;
+    background-color: #04703a;
+    border-color: white;
+    width: 200px;
+    height: 80px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none;
+    font-weight: 300;
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+    position: relative;
+    top: -150px;
+    left: 650px;
+}
+
+#main-add-button1:hover, :focus{
+    border-color: #04694a;
+    background-color: white;
+    color: #04703a;
+    font-weight: 500;
+}
+
+.error-messages{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: red;
+}
+
+#about-us{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    color: White;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#about-us-details{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+#team{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 50px;
+}
+
+#works{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 50px;
+}
+
+#team-members{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+}
+
+#works-details{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+}
+
+.add-error-messages{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: red;
+}
+#table-head{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #04703a;
+}
+
+.btn-delete{
+    margin-right: 5px;
+    width: 100px;
+}
+
+.btn-edit{
+    width: 100px;
+}
+
+.btn-update{
+    margin-bottom: 5px;
+    width: 100px;
+}
+
+
+@media(max-width:770px){
+    .heading{
+        position: relative;
+        top: -230px;
+    }
+    .heading-below{
+        position: relative;
+        top:-220px;
+    }
+    #register-button{
+        position: relative;
+        top: -200px;
+    }
+    #first-col{
+        height: 200px;
+    }
+    .login{
+        padding-top: 40px;
+    }
+    #login-col{
+        margin-left: 80px;
+    }
+    #register-button{
+        position: relative;
+        top: -220px;
+    }
+    #registration-details{
+        margin-left: 20px;
+    }
+    #add-user{
+        width: 350px;
+    }
+}
+
