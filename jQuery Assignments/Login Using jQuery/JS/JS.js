@@ -267,7 +267,7 @@ $('#add-pincode').focusout(function (){
 
 function CheckAddUsername(){
     var addUsername=$('#add-username').val();
-    if(addUsername.length>3 && addUsername.length<10 &&addUsername!==''){
+    if(addUsername.length>3 && addUsername.length<15 &&addUsername!==''){
         $('#add-username-error').hide();
     }
     else{
@@ -311,9 +311,9 @@ function CheckAddPhoneNumber(){
 
 function CheckAddAddress(){
     var addAddress=$('#add-address').val();
-    if(addAddress.length<10){
+    if(addAddress.length<10 || addAddress===''){
         $('#add-address-error').show();
-        addAddress=true;
+        addAddressError=true;
     }
     else{
         $('#add-address-error').hide();
@@ -322,9 +322,9 @@ function CheckAddAddress(){
 
 function CheckAddPincode(){
     var addPincode=$('#add-pincode').val();
-    if(addPincode.length!==6){
+    if(addPincode.length!==6 || addPincode===''){
         $('#add-pincode-error').show();
-        addPincode=true;
+        addPincodeError=true;
     }
     else{
         $('#add-pincode-error').hide();
@@ -384,45 +384,144 @@ $(document).ready(function(){
         var newAddress=$(this).parents('tr').attr('input-address')
         var newPincode=$(this).parents('tr').attr('input-pincode')
 
-        $(this).parents('tr').find('td:eq(0)').html("<input name='edit-username' value='"+newUsername+"'>");
-        $(this).parents('tr').find('td:eq(1)').html("<input name='edit-email' value='"+newEmail+"'>");
-        $(this).parents('tr').find('td:eq(2)').html("<input name='edit-password' value='"+newPassword+"'>");
-        $(this).parents('tr').find('td:eq(3)').html("<input name='edit-phone-number' value='"+newPhoneNumber+"'>");
-        $(this).parents('tr').find('td:eq(4)').html("<input name='edit-address' value='"+newAddress+"'>");
-        $(this).parents('tr').find('td:eq(5)').html("<input name='edit-pincode' value='"+newPincode+"'>");
+        $(this).parents('tr').find('td:eq(0)').html("<input id='edit-username' name='edit-username' value='"+newUsername+"'>");
+        $(this).parents('tr').find('td:eq(1)').html("<input id='edit-email' name='edit-email' value='"+newEmail+"'>");
+        $(this).parents('tr').find('td:eq(2)').html("<input id='edit-password' type='password' name='edit-password' value='"+newPassword+"'>");
+        $(this).parents('tr').find('td:eq(3)').html("<input id='edit-phone-number' name='edit-phone-number' value='"+newPhoneNumber+"'>");
+        $(this).parents('tr').find('td:eq(4)').html("<input id='edit-address' name='edit-address' value='"+newAddress+"'>");
+        $(this).parents('tr').find('td:eq(5)').html("<input id='edit-pincode' name='edit-pincode' value='"+newPincode+"'>");
         $(this).parents('tr').find('td:eq(6)').prepend("<button class='btn btn-primary btn-update' type='button'>Update</button>");
         $(this).hide();
+        $('#edit-username').focusout(function (){
+            CheckUpdatedUsername()
+        })
+        $('#edit-email').focusout(function (){
+            CheckUpdatedEmail()
+        })
+        $('#edit-password').focusout(function (){
+            CheckUpdatedPassword()
+        })
+        $('#edit-phone-number').focusout(function (){
+            CheckUpdatedPhoneNumber()
+        })
+        $('#edit-address').focusout(function (){
+            CheckUpdatedAddress()
+        })
+        $('#edit-pincode').focusout(function (){
+            CheckUpdatedPincode()
+        })
 
     })
 })
+
+var updatedUsernameError=false;
+var updatedEmailError=false;
+var updatedPasswordError=false;
+var updatedPhoneNumberError=false;
+var updatedAddressError=false;
+var updatedPincodeError=false;
+
+
+function CheckUpdatedUsername(){
+    var addUpdatedUsername=$('input[name="edit-username"]').val();
+    if(addUpdatedUsername.length<3 || addUpdatedUsername.length>15 || addUpdatedUsername===''){
+        alert("Username length should be between 3 and 15");
+        updatedUsernameError=true;
+    }
+    else{
+        updatedUsernameError=false;
+    }
+}
+
+function CheckUpdatedEmail() {
+    var pattern = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+    var addUpdatedEmail=$('input[name="edit-email"]').val();
+    if (pattern.test(addUpdatedEmail) && addUpdatedEmail !== '') {
+        updatedEmailError=false;
+    } else {
+       alert("Please enter a valid Email")
+       updatedEmailError = true;
+    }
+}
+
+function CheckUpdatedPassword() {
+    var addUpdatedPassword=$('input[name="edit-password"]').val();
+    if (addUpdatedPassword.length < 8) {
+       alert("Password length should be greater than 8")
+       updatedPasswordError = true;
+    } else {
+       updatedPasswordError=false;
+    }
+}
+
+function CheckUpdatedPhoneNumber(){
+    var addUpdatedPhoneNumber=$('input[name="edit-phone-number"]').val();
+    if(addUpdatedPhoneNumber.length==10 && addUpdatedPhoneNumber!==''){
+        updatedPhoneNumberError=false;
+    }
+    else{
+        alert("Please enter a valid phone number")
+        updatedPhoneNumberError=true;
+    }
+}
+
+function CheckUpdatedAddress(){
+    var addUpdatedAddress=$('input[name="edit-address"]').val();
+    if(addUpdatedAddress.length<10 || addUpdatedAddress===''){
+        alert("Please enter a valid address")
+        updatedAddressError=true;
+    }
+    else{
+        updatedAddressError=false;
+    }
+}
+
+function CheckUpdatedPincode(){
+    var addUpdatedPincode=$('input[name="edit-pincode"]').val();
+    if(addUpdatedPincode.length!==6 || addUpdatedPincode===''){
+        alert("Please enter a valid pincode")
+        updatedPincodeError=true;
+    }
+    else{
+        updatedPincodeError=false;
+    }
+}
+
+
+
 
 $(document).ready(function (){
     $('body').on('click','.btn-update',function (){
-        var addUpdatedUsername=$('input[name="edit-username"]').val();
-        var addUpdatedEmail=$('input[name="edit-email"]').val();
-        var addUpdatedPassword=$('input[name="edit-password"]').val();
-        var addUpdatedPhoneNumber=$('input[name="edit-phone-number"]').val();
-        var addUpdatedAddress=$('input[name="edit-address"]').val();
-        var addUpdatedPincode=$('input[name="edit-pincode"]').val();
 
-        $(this).parents('tr').find('td:eq(0)').text(addUpdatedUsername);
-        $(this).parents('tr').find('td:eq(1)').text(addUpdatedEmail);
-        $(this).parents('tr').find('td:eq(2)').text(addUpdatedPassword);
-        $(this).parents('tr').find('td:eq(3)').text(addUpdatedPhoneNumber);
-        $(this).parents('tr').find('td:eq(4)').text(addUpdatedAddress);
-        $(this).parents('tr').find('td:eq(5)').text(addUpdatedPincode);
+        if(updatedUsernameError===false && updatedEmailError===false && updatedPasswordError===false && updatedPhoneNumberError===false && updatedAddressError===false && updatedPincodeError===false){
+            var addUpdatedUsername=$('input[name="edit-username"]').val();
+            var addUpdatedEmail=$('input[name="edit-email"]').val();
+            var addUpdatedPassword=$('input[name="edit-password"]').val();
+            var addUpdatedPhoneNumber=$('input[name="edit-phone-number"]').val();
+            var addUpdatedAddress=$('input[name="edit-address"]').val();
+            var addUpdatedPincode=$('input[name="edit-pincode"]').val();
+            
+        
 
-        $(this).parents('tr').attr('add-input-username',addUpdatedUsername);
-        $(this).parents('tr').attr('add-input-email',addUpdatedEmail);
-        $(this).parents('tr').attr('add-input-password',addUpdatedPassword);
-        $(this).parents('tr').attr('add-input-phone-number',addUpdatedPhoneNumber);
-        $(this).parents('tr').attr('add-input-address',addUpdatedAddress);
-        $(this).parents('tr').attr('add-input-pincode',addUpdatedPincode);
+            $(this).parents('tr').find('td:eq(0)').text(addUpdatedUsername);
+            $(this).parents('tr').find('td:eq(1)').text(addUpdatedEmail);
+            $(this).parents('tr').find('td:eq(2)').text(addUpdatedPassword);
+            $(this).parents('tr').find('td:eq(3)').text(addUpdatedPhoneNumber);
+            $(this).parents('tr').find('td:eq(4)').text(addUpdatedAddress);
+            $(this).parents('tr').find('td:eq(5)').text(addUpdatedPincode);
 
-        $(this).parents('tr').find('.btn-edit').show();
-        $(this).parents('tr').find('.btn-update').remove();
+            $(this).parents('tr').attr('add-input-username',addUpdatedUsername);
+            $(this).parents('tr').attr('add-input-email',addUpdatedEmail);
+            $(this).parents('tr').attr('add-input-password',addUpdatedPassword);
+            $(this).parents('tr').attr('add-input-phone-number',addUpdatedPhoneNumber);
+            $(this).parents('tr').attr('add-input-address',addUpdatedAddress);
+            $(this).parents('tr').attr('add-input-pincode',addUpdatedPincode);
 
+            $(this).parents('tr').find('.btn-edit').show();
+            $(this).parents('tr').find('.btn-update').remove();
+        }
+        else{
+            alert("Please fill the details carefully")
+        }
     })
 })
-
-
