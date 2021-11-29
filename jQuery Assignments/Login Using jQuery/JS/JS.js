@@ -358,7 +358,6 @@ $(document).ready(function (){
             var addInputPhoneNumber=$('input[name="add-input-phone-number"]').val();
             var addInputAddress=$('#add-address').val();
             var addInputPincode=$('input[name="add-input-pincode"]').val();
-            console.log(addedUsersDetails);
             $('.data-table tbody').append('<tr input-username="'+addInputUsername+'" input-email="'+addInputEmail+'" input-password="'+addInputPassword+'" input-phone-number="'+addInputPhoneNumber+'" input-address="'+addInputAddress+'" input-pincode="'+addInputPincode+'"><td>'+addInputUsername+'</td><td>'+addInputEmail+'</td><td>'+addInputPassword+'</td><td>'+addInputPhoneNumber+'</td><td>'+addInputAddress+'</td><td>'+addInputPincode+'</td><td><button class="btn btn-danger btn-lg btn-delete" type="button">Delete</button><button class="btn btn-primary btn-lg btn-edit" type="button">Edit</button></td></tr>')
             $(':input').val('');
             $('#add-address').val('');
@@ -425,3 +424,5 @@ $(document).ready(function (){
 
     })
 })
+
+
