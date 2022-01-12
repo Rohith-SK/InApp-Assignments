@@ -9,7 +9,7 @@ import './MainPage.css'
 
 
 
-function MainPage(props) {
+function MainPage() {
     const navigate = useNavigate()
     const username='Rohith'
     const password='admin'
