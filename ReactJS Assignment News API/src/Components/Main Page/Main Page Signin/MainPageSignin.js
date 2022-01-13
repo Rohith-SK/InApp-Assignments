@@ -8,7 +8,7 @@ import { BsKey } from 'react-icons/bs'
 import Constants from '../../constants.json'
 import './MainPageSignin.css'
 
-function MainPageDetails() {
+function MainPageSignin() {
     const navigate = useNavigate()
     const username = 'Rohith'
     const password = 'admin'
@@ -41,9 +41,9 @@ function MainPageDetails() {
                         <div className='main-right-sub'>Please log in into your account</div>
                         <form onSubmit={signInFormHandler}>
                             <Form.Group>
-                                <Form.Label className='login-items'><AiOutlineUser className='icons' />{Constants[0].firstName}</Form.Label>
+                                <Form.Label className='login-items'><AiOutlineUser className='icons' />{Constants[0].username}</Form.Label>
                                 <Form.Control className='form-input' value={inputUsername} type='text' placeholder={Constants[0].placeholderU} onChange={(event) => setInputUsername(event.target.value)}></Form.Control>
-                                <Form.Label className='login-items'><BsKey className='icons' />{Constants[0].lastName}</Form.Label>
+                                <Form.Label className='login-items'><BsKey className='icons' />{Constants[0].password}</Form.Label>
                                 <Form.Control className='form-input' value={inputPassword} type='password' placeholder={Constants[0].placeholderP} onChange={(event) => setInputPassword(event.target.value)}></Form.Control>
                                 <button type='submit' className='btn mb-3 sign-in-button'>Sign in</button>
                             </Form.Group>
@@ -54,4 +54,4 @@ function MainPageDetails() {
     )
 }
 
-export default MainPageDetails
+export default MainPageSignin
