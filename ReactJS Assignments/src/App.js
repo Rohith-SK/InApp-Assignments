@@ -2,14 +2,14 @@ import { Routes,
   Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import MainPage from './Components/MainPage';
-import RegisterPage from './Components/RegisterPage';
-import NewsInfo from './Components/NewsInfo';
-import NewsDetails from './Components/NewsDetails'
-import TitleInfo from './Components/TitleInfo';
-import TitleInfoDetails from './Components/TitleInfoDetails';
-import RangeTitle from './Components/RangeTitle'
-import RangeTitleDetails from './Components/RangeTitleDetails';
+import MainPage from './Components/Main Page/MainPage'
+import RegisterPage from './Components/Register Page/RegisterPage';
+import NewsInfo from './Components/News Info Page/NewsInfo';
+import NewsDetails from './Components/News Details Page/NewsDetails'
+import TitleInfo from './Components/Title Info Page/TitleInfo';
+import TitleInfoDetails from './Components/Title Info Details Page/TitleInfoDetails';
+import RangeTitle from './Components/Range Title Page/RangeTitle'
+import RangeTitleDetails from './Components/Range Title Details Page/RangeTitleDetails';
 
 
 
